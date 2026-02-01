@@ -6308,7 +6308,14 @@ function stopLocationWatch() {
                 if (typeof result.played != "number") {
                     console.debug("result.played != num")
                 }
-                const name = file.webkitRelativePath.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+                let name = file.webkitRelativePath.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+
+                try {
+                    name = decodeURIComponent(name)
+                } catch (e) {
+                    undefined
+                }
+
                 music.set(name,file)
                 music.setPlayed(name,result.played)
                 //console.debug(`${name} played ${result.played}`)
