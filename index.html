@@ -6315,7 +6315,7 @@ function stopLocationWatch() {
                 } catch (e) {
                     undefined
                 }
-                name = name.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+                name = name.split("/")[name.split("/").length-1].split(".").slice(0,-1).join(".")
 
                 music.set(name,file)
                 music.setPlayed(name,result.played)
@@ -6330,7 +6330,7 @@ function stopLocationWatch() {
                 } catch (e) {
                     undefined
                 }
-                name = name.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+                name = name.split("/")[name.split("/").length-1].split(".").slice(0,-1).join(".")
 
 
                 console.debug(`${name} played 0`)
