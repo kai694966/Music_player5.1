@@ -15,7 +15,7 @@ Signal On
 </head>
 <body>
 
-<p>v5.1.2.2</p>
+<p>v5.1.2.3</p>
 
 <input type="file" id="folderInput" webkitdirectory directory>
 
@@ -6308,13 +6308,14 @@ function stopLocationWatch() {
                 if (typeof result.played != "number") {
                     console.debug("result.played != num")
                 }
-                let name = file.webkitRelativePath.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
 
+                let name = file.webkitRelativePath
                 try {
                     name = decodeURIComponent(name)
                 } catch (e) {
                     undefined
                 }
+                name = name.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
 
                 music.set(name,file)
                 music.setPlayed(name,result.played)
@@ -6322,7 +6323,16 @@ function stopLocationWatch() {
             } else {
                 // キャッシュなし → 後でハッシュ計算
                 missingFiles.push(file);
-                const name = file.webkitRelativePath.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+
+                let name = file.webkitRelativePath
+                try {
+                    name = decodeURIComponent(name)
+                } catch (e) {
+                    undefined
+                }
+                name = name.split("/")[file.webkitRelativePath.split("/").length-1].split(".").slice(0,-1).join(".")
+
+
                 console.debug(`${name} played 0`)
             }
         }
